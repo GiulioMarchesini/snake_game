@@ -10,3 +10,4 @@ This is a simple snake game made in python using Turtle module.
 - [ ] Testing snake body collision
 - [ ] Testing snake body increase
 - [ ] Possible bug: if the snake goes up and you press "Left" + "Down" the snake invert the direction. Test it.
+- [ ] Add another tipe of food that kill the snake if eaten
