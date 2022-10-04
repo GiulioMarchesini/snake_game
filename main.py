@@ -1,5 +1,3 @@
-from ast import Delete
-from pydoc import text
 from turtle import Screen, Turtle
 import random
 import time
@@ -30,7 +28,7 @@ class Snake:
             new_part.color("white")
             new_part.up()
             new_part.goto(x=-20*i,y=0)
-            new_part.speed("fastest")#TODO increase speed
+            new_part.speed("fastest")
             self.snake_body.append(new_part)
         screen.update()
 
@@ -57,17 +55,18 @@ class Snake:
             elif key== "Left":
                 self.snake_head.seth(180)
                 self.direction="Left"
-        screen.update()
+        # screen.update()
+        self.move()
 
-    # def increase_size(self):    
-    #     #increase size of snake
-    #     new_part = Turtle("square")
-    #     new_part.color("white")
-    #     new_part.up()
-    #     #control the position of the last part of the snake
-    #     new_part.goto(x=snake_body[-1].xcor() - 20, y=snake_body[-1].ycor())
-    #     #TODO control the snake's direction before adding a new part
-    #     snake_body.append(new_part)
+    def increase_size(self):    
+        #increase size of snake
+        new_part = Turtle("square")
+        new_part.color("white")
+        new_part.up()
+        #control the position of the last part of the snake
+        new_part.goto(x=self.snake_body[-1].xcor() - 20, y=self.snake_body[-1].ycor())
+        self.snake_body.append(new_part)
+        screen.update()
 
 def game_setup():
     global snake
@@ -81,8 +80,8 @@ def game_setup():
     food= Turtle("circle")
     food.color("red")
     food.up()
-    food.goto(x=random.randint(-(SCREEN_WIDTH/2 -20),SCREEN_WIDTH/2 -20) //20 *20, y=random.randint(-(SCREEN_HEIGHT/2 -20),SCREEN_HEIGHT/2 -20)//20 *20)
     food.speed("fastest")
+    food.goto(x=random.randint(-(SCREEN_WIDTH/2 -20),SCREEN_WIDTH/2 -20) //20 *20, y=random.randint(-(SCREEN_HEIGHT/2 -20),SCREEN_HEIGHT/2 -20)//20 *20)
 
 #change food position
 def change_food_position():
@@ -130,12 +129,13 @@ def main():
         #control if the snake is out of the screen
         if snake.snake_head.xcor() > (SCREEN_WIDTH/2 -20) or snake.snake_head.xcor() < -(SCREEN_WIDTH/2 -20) or snake.snake_head.ycor() > (SCREEN_HEIGHT/2 -20) or snake.snake_head.ycor() < -(SCREEN_HEIGHT/2 -20):
             isGameOver= game_over()
+        #control snake collision
+        if check_collision():
+            isGameOver= game_over()
         #control if the snake has eaten the food
         if snake.snake_head.distance(food) < 20:
             change_food_position()
-            screen.update()
-            #TODO increase size of snake
-            # snake.increase_size()
+            snake.increase_size()
     
 
 main()
