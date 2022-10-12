@@ -133,7 +133,7 @@ def main():
         if check_collision():
             isGameOver= game_over()
         #control if the snake has eaten the food
-        if snake.snake_head.distance(food) < 20:
+        if snake.snake_head.distance(food) < 10:
             change_food_position()
             snake.increase_size()
     

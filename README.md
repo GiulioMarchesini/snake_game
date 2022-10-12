@@ -6,8 +6,7 @@ This is a simple snake game made in python using Turtle module.
 - Eat the food to grow the snake.
 
 ## to do
+- [X] Testing snake body increase
+- [X] Testing snake body collision
 - [ ] Add a score board
-- [ ] Testing snake body collision
-- [ ] Testing snake body increase
-- [ ] Possible bug: if the snake goes up and you press "Left" + "Down" the snake invert the direction. Test it.
-- [ ] Add another tipe of food that kill the snake if eaten
+- [ ] Add another type of food that kill the snake if eaten
