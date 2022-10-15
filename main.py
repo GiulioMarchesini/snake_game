@@ -1,6 +1,8 @@
 from turtle import Screen, Turtle
 import random
 import time
+from scoreboard import Scoreboard
+
 
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 600
@@ -14,6 +16,7 @@ screen.tracer(0)
 pulsanti= ["Right","Up","Left","Down"]
 snake=0
 food=0
+scoreboard=0
 
 class Snake:
     def __init__(self):
@@ -71,7 +74,10 @@ class Snake:
 def game_setup():
     global snake
     global food
+    global scoreboard
+    scoreboard = Scoreboard()
     snake= Snake()
+
     #set up the key bindings
     for i in pulsanti:
         screen.onkey(lambda key=i: snake.key_pressed(key),i)
@@ -97,10 +103,14 @@ def check_collision():
     return False
 
 def game_over():
-    play_again= screen.textinput("Game Over", "Do you want to play again? (y/n)")
     global snake
     global food
+    global scoreboard
+    scoreboard.game_over()
+    play_again= screen.textinput("Game Over", "Do you want to play again? (y/n)")
     if play_again == "y":
+        #clear scoreboard
+        scoreboard.clear()
         #delete the food
         food.hideturtle()
         food=0
@@ -117,7 +127,6 @@ def game_over():
         return False
     else :
         return True
-
 
 def main():
     isGameOver= False
@@ -136,6 +145,8 @@ def main():
         if snake.snake_head.distance(food) < 10:
             change_food_position()
             snake.increase_size()
+            scoreboard.increase_score()
+
     
 
 main()

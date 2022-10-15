@@ -8,5 +8,5 @@ This is a simple snake game made in python using Turtle module.
 ## to do
 - [X] Testing snake body increase
 - [X] Testing snake body collision
-- [ ] Add a score board
+- [x] Add a score board
 - [ ] Add another type of food that kill the snake if eaten
