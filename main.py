@@ -3,7 +3,6 @@ import random
 import time
 from scoreboard import Scoreboard
 
-
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 600
 
@@ -119,7 +118,6 @@ def game_over():
         snake.snake_head=0;
         for i in snake.snake_body:
             i.hideturtle()
-            i=0
         snake.snake_body.clear()
         snake=0
         #restart the game
